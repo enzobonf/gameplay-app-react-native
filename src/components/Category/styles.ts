@@ -8,8 +8,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
-        marginRight: 8,
-
+        marginRight: 8
     },
     content: {
         width: 100,
@@ -22,7 +21,7 @@ export const styles = StyleSheet.create({
         fontFamily: theme.fonts.title700,
         color: theme.colors.heading,
         fontSize: 15,
-        paddingTop: 7
+        marginTop: 13
     },
     check:{
         position: 'absolute',
