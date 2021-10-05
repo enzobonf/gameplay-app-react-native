@@ -5,7 +5,7 @@ import { Rajdhani_500Medium, Rajdhani_700Bold } from '@expo-google-fonts/rajdhan
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
-import { AuthContext } from './src/components/auth';
+import { AuthProvider } from './src/hooks/auth';
 
 import { Routes } from './src/routes';
 
@@ -29,13 +29,9 @@ export default function App(){
           backgroundColor="transparent"
           translucent
       />
-      <AuthContext.Provider value={{
-        name: 'Enzo',
-        email: 'enzobonfxo@gmail.com',
-        avatar: 'enzobonf.png'
-      }}>
+      <AuthProvider>
         <Routes />
-      </AuthContext.Provider>
+      </AuthProvider>
     </>
   );
 }

@@ -1,14 +1,20 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { AuthRoutes } from './auth.routes';
 import { Background } from '../components/Background';
+import { SignIn } from '../screens/SignIn';
+
+import { UseAuth } from '../hooks/auth';
+import { AuthRoutes } from './auth.routes';
 
 export function Routes(){
+
+    const { user } = UseAuth();
+
     return(
         <Background>
             <NavigationContainer>
-                <AuthRoutes />
+                { user.id ? <AuthRoutes /> : <SignIn />}
             </NavigationContainer>
         </Background>
     )
