@@ -20,14 +20,14 @@ export function Guilds( { handleGuildSelect }: Props){
 
     async function fetchGuilds(){
 
-        /* try{ */
+        //try{
             
             const response = await api.get('/users/@me/guilds');
             setGuilds(response.data);
             setLoading(false);
 
-        /* } catch{
-            throw new Error('Não foi possível carregar os servidores');
+        /* } catch(error){
+            throw new Error(`Não foi possível carregar os servidores - ${error}`);
         } finally{
             setLoading(false);
         } */
@@ -36,7 +36,7 @@ export function Guilds( { handleGuildSelect }: Props){
 
     useEffect(() => {
         fetchGuilds();
-    });
+    }, []);
     
     return(
         <View style={styles.container}>
