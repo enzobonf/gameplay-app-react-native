@@ -5,7 +5,7 @@ import { Background } from '../components/Background';
 import { SignIn } from '../screens/SignIn';
 
 import { UseAuth } from '../hooks/auth';
-import { AuthRoutes } from './auth.routes';
+import { AuthRoutes } from './app.routes';
 
 export function Routes(){
 
