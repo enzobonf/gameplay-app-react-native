@@ -33,6 +33,7 @@ type AuthContextData = {
     user: User;
     loading: boolean;
     signIn: () => Promise<void>;
+    signOut: () => Promise<void>;
 }
 
 type AuthProviderProps = {
@@ -66,7 +67,6 @@ function AuthProvider({ children }: AuthProviderProps){
 
                 api.defaults.headers.authorization = `Bearer ${params.access_token}`;
                 const userInfo = await api.get('/users/@me');
-                //console.log(userInfo.data);
 
                 const firstName = userInfo.data.username.split(' ')[0];
                 userInfo.data.avatar = `${CDN_IMAGE}/avatars/${userInfo.data.id}/${userInfo.data.avatar}.png`;
@@ -104,6 +104,10 @@ function AuthProvider({ children }: AuthProviderProps){
         }
     }
 
+    async function signOut(){
+        setUser({} as User);
+    }
+
     useEffect(() => {
         loadUserStorageData();
     }, []);
@@ -112,7 +116,8 @@ function AuthProvider({ children }: AuthProviderProps){
         <AuthContext.Provider value={{
             user,
             loading,
-            signIn
+            signIn,
+            signOut
         }}>
             { children }
         </AuthContext.Provider>

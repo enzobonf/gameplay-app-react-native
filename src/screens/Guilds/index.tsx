@@ -20,17 +20,16 @@ export function Guilds( { handleGuildSelect }: Props){
 
     async function fetchGuilds(){
 
-        //try{
+        try{
             
             const response = await api.get('/users/@me/guilds');
             setGuilds(response.data);
-            setLoading(false);
 
-        /* } catch(error){
+        } catch(error){
             throw new Error(`Não foi possível carregar os servidores - ${error}`);
         } finally{
             setLoading(false);
-        } */
+        }
 
     }
 

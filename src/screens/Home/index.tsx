@@ -41,7 +41,6 @@ export function Home(){
 
         const response = await AsyncStorage.getItem(COLLECTION_APPOINTMENTS);
         const storage: AppointmentProps[] = response ? JSON.parse(response) : [];
-        console.log(storage);
 
         if(category){
             setAppointments(storage.filter(item => item.category === category));
@@ -78,7 +77,7 @@ export function Home(){
                 <>
                     <ListHeader
                         title="Partidas Agendadas"
-                        subtitle="Total 6"
+                        subtitle={`Total ${appointments.length}`}
                     />
 
                     <FlatList
@@ -87,7 +86,7 @@ export function Home(){
                         renderItem={({ item }) => (
                             <Appointment 
                                 data={item} 
-                                onPress={handleAppointmentDetails}
+                                onPress={() => handleAppointmentDetails(item)}
                             />
                         )}
                         ItemSeparatorComponent={() => <ListDivider />}
