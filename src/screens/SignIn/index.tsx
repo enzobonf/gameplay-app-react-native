@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Image, Alert, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
 
 import { UseAuth } from '../../hooks/auth';
 
@@ -21,7 +20,7 @@ export function SignIn(){
         try{
             await signIn();
         } catch(error){
-            //Alert.alert(error);
+            Alert.alert(error);
         }
 
     }

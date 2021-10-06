@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 import uuid from 'react-native-uuid';
 
@@ -23,12 +24,11 @@ import { COLLECTION_APPOINTMENTS } from '../../configs/database';
 
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
-import { useNavigation } from '@react-navigation/native';
 
 
 export function AppointmentCreate(){
 
-    const [ category, setCategory ] = useState('');
+    const [ category, setCategory ] = useState('1');
     const [ openGuildsModal, setOpenGuildsModal ] = useState(false);
     const [ guild, setGuild ] = useState<GuildProps>({} as GuildProps);
     
@@ -75,9 +75,9 @@ export function AppointmentCreate(){
         );
 
         navigation.navigate('Home');
-
+            
     }
-
+    
     return(
         <KeyboardAvoidingView 
             style={styles.container}

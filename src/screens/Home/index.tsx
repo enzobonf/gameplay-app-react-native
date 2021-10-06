@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { ButtonAdd } from '../../components/ButtonAdd';
@@ -10,7 +10,7 @@ import { ListDivider } from '../../components/ListDivider';
 import { Background } from '../../components/Background';
 import { Load } from '../../components/Load';
 
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { styles } from './styles';
 
@@ -29,8 +29,8 @@ export function Home(){
         categoryId === category ? setCategory(''): setCategory(categoryId);
     }
 
-    function handleAppointmentDetails(){
-        navigation.navigate('AppointmentDetails');
+    function handleAppointmentDetails(guildSelected: AppointmentProps){
+        navigation.navigate('AppointmentDetails', { guildSelected });
     }
 
     function handLeAppointmentCreate(){
@@ -41,6 +41,7 @@ export function Home(){
 
         const response = await AsyncStorage.getItem(COLLECTION_APPOINTMENTS);
         const storage: AppointmentProps[] = response ? JSON.parse(response) : [];
+        console.log(storage);
 
         if(category){
             setAppointments(storage.filter(item => item.category === category));
@@ -52,6 +53,10 @@ export function Home(){
         setLoading(false);
         
     }
+
+    useFocusEffect(useCallback(()=>{
+        loadAppointments();
+    }, [category]));
 
     return(
         <Background>
